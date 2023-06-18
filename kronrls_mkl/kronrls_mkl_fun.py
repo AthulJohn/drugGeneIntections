@@ -35,13 +35,9 @@ def optimize_regcoef(K1, K2, y):
         yy = np.copy(y)
         yy[yy == 0] = -1
         stats = evaluate_performance(predictions.flatten(), yy.flatten(), 'classification')
-
-        # print('(kronrls): INNER-CV, regcoef={:.2f} - AUPR={:.4f}'.format(r, stats['aupr']))
-
         if stats['aupr'] > best_aupr:
             best_regcoef = r
             best_aupr = stats['aupr']
-
     return best_regcoef
 
 
@@ -125,8 +121,8 @@ def kronrls_mkl(K1, K2, y, lambda_, regcoef=0.2, maxiter=20, isinner=False):
         x_beta, fval_beta = res_beta.x, res_beta.fun
         
         # update values for next iteration
-        alpha = x_alpha * alpha
-        beta = x_beta * beta
+        alpha = x_alpha 
+        beta = x_beta 
         
         combFval[iter_ - 1] = fval_alpha + fval_beta
         if iter_ > 1:
@@ -143,6 +139,6 @@ def kronrls_mkl(K1, K2, y, lambda_, regcoef=0.2, maxiter=20, isinner=False):
     if not isinner:
         lambda_ , best_aupr = optimize_lambda(K1_comb, K2_comb, y)
     
-        # print("LAMBDA HERE",lambda_)
     A = kronrls(K1_comb, K2_comb, y,lambda_)
+    
     return A

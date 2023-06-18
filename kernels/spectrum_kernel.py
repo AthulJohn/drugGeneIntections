@@ -14,7 +14,6 @@ def compute_spectrum_matrix(seqs, k):
     for i in range(n):
         for j in range(i, n):
             kernel_matrix[i][j] = spectrum_kernel(seqs[i], seqs[j], k)
-            print(i,j,kernel_matrix[i][j])
             kernel_matrix[j][i] = kernel_matrix[i][j]
     return kernel_matrix
 

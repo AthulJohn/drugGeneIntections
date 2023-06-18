@@ -28,7 +28,6 @@ def optimize_lambda(K1, K2, y):
         
         aupr = aupr_score(yy.flatten(), predictions.flatten())
         
-        print(f' (kronrls): INNER-CV, lambda=2^{e} - AUPR={aupr:.4f}')
         
         if aupr > bestaupr:
             best_lambda = lambda_

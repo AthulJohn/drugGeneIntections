@@ -4,7 +4,7 @@ from Bio import Entrez
 def get_protein_sequence(protein_symbol):
 
     # Set up the Entrez API
-    Entrez.email = "johnpc716@gmail.com"  # Replace with your email address
+    Entrez.email = "johnpc716@gmail.com"  
 
     # Search for the protein symbol in UniProt using Entrez
     handle = Entrez.esearch(db="protein", term=protein_symbol)
